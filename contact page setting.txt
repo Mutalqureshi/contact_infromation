@@ -1,0 +1,114 @@
+Contact page 
+######## contact Information code #########
+
+-------------------------------------------
+
+Function short code ######################
+
+add_shortcode("contact-details","social_icons_sec");
+function social_icons_sec(){
+    $html .='<div class="footer-contacts">';
+    global $fdata;
+    if($fdata['phone']){
+        $html .='<a class="with-icon phone" href="tel:'.$fdata['phone'].'"><i class="fas fa-phone fa-flip-horizontal"></i>'.$fdata['phone'].'</a>';
+    }
+    $html .='<br>';
+    if($fdata['email']){
+        $html .='<a class="with-icon email" href="mailto:'.$fdata['email'].'"><i class="fas fa-envelope"></i>'.$fdata['email'].'</a>';
+    }
+    $html .='<br>';
+    if($fdata['address']){
+        $html .='<a  target="_blank" class="with-icon address"><i class="fas fa-map-marker-alt"></i><div class="address-width"> '.$fdata['address'].'</div></a>';
+    }
+    $html .='</div>';
+    return $html;
+}
+
+--------------------------------------------
+
+css 
+###########################################
+
+.wpb_gmaps_widget .wpb_wrapper {
+    background-color: #f7f7f7 !important;
+    padding: 0 !important;
+    border-top: 3px solid #ff7200 !important;
+}
+.footer-contacts a {
+    color: #000;
+    /*color: #ff7200 !important;*/
+    font-size: 18px !important;
+}
+.footer-contacts a i {
+    margin-bottom: 12px !important;
+    color: #ff7200 !important;
+border: 1px solid #ff7200 !important;
+    font-size: 23px !important;
+    width: 50px !important;
+    margin-right: 10px;
+    height: 50px !important;
+    text-align: center !important;
+    line-height: 50px !important;
+    border-radius: 70% !important;
+}
+.with-icon.address .fas.fa-map-marker-alt {
+    float: left !important;
+}
+.address-width{
+    margin-top: 7px !important;
+}
+
+
+
+
+Theme option setting
+#####################################
+
+
+Redux::setSection( $opt_name, array(
+		'title' => __('Contact', 'redux-framework-demo'),
+		'fields' => array (
+			array (
+				//'desc' => __('Enter Address.', 'redux-framework-demo'),
+				'id' => 'address',
+				'type' => 'textarea',
+				'title' => __('Address', 'redux-framework-demo'),
+				'rows'    => '2'
+				//'default' => '2501 St. Andrews Boulevard, Boca Raton, FL 33434',
+			),
+			array (
+				'id' => 'phone',
+				'type' => 'text',
+				'title' => __('Contact Number', 'redux-framework-demo'),
+				'label'    => true,
+			),
+			/*array (
+				'id' => 'fax',
+				'type' => 'text',
+				'title' => __('Fax Number', 'redux-framework-demo'),
+				'label'    => true,
+			),*/
+			array (
+				'id' => 'email',
+				'type' => 'text',
+				'title' => __('Contact Email', 'redux-framework-demo'),
+				'validate' => 'email',
+			),
+			array (
+				'id' => 'contact_form',
+				'type' => 'text',
+				'title' => __('Contact Form Code', 'redux-framework-demo'),
+				'label'    => true,
+			),
+			array (
+				'id' => 'foot-text',
+				'type' => 'text',
+				'title' => __('Footer Text', 'redux-framework-demo'),
+				'label'    => true,
+			),
+
+
+		),
+		'icon' => 'el-icon-map-marker',
+    ) );
+	
